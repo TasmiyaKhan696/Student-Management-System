@@ -1,4 +1,3 @@
-# Student-Management-System
 # Student Management System (Java + JDBC)
 
 ## 📌 Project Description

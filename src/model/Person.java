@@ -1,19 +1,12 @@
 package model;
 
-/**
- * Abstract base class demonstrating ABSTRACTION and ENCAPSULATION.
- * All people in the system share these core fields.
- */
 public abstract class Person {
 
-    // Encapsulated fields with private access
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
-
-    // --- Constructors (overloaded) ---
 
     public Person() {}
 
@@ -31,30 +24,22 @@ public abstract class Person {
         this.phone     = phone;
     }
 
-    // --- Abstract method: subclasses must override ---
     public abstract String getRole();
 
-    // --- Polymorphic display method: overridden in subclasses ---
     public String getDisplayName() {
         return firstName + " " + lastName;
     }
 
-    // --- Getters and Setters (Encapsulation) ---
-
-    public int getId()                    { return id; }
-    public void setId(int id)             { this.id = id; }
-
-    public String getFirstName()          { return firstName; }
-    public void setFirstName(String fn)   { this.firstName = fn; }
-
-    public String getLastName()           { return lastName; }
-    public void setLastName(String ln)    { this.lastName = ln; }
-
-    public String getEmail()              { return email; }
-    public void setEmail(String email)    { this.email = email; }
-
-    public String getPhone()              { return phone; }
-    public void setPhone(String phone)    { this.phone = phone; }
+    public int getId()                  { return id; }
+    public void setId(int id)           { this.id = id; }
+    public String getFirstName()        { return firstName; }
+    public void setFirstName(String fn) { this.firstName = fn; }
+    public String getLastName()         { return lastName; }
+    public void setLastName(String ln)  { this.lastName = ln; }
+    public String getEmail()            { return email; }
+    public void setEmail(String e)      { this.email = e; }
+    public String getPhone()            { return phone; }
+    public void setPhone(String p)      { this.phone = p; }
 
     @Override
     public String toString() {

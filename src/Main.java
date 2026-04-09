@@ -1,7 +1,8 @@
 import ui.MainFrame;
+import dao.StudentDAO;
 
 public class Main {
     public static void main(String[] args) {
-        new MainFrame();
+        javax.swing.SwingUtilities.invokeLater(() -> new MainFrame());
     }
 }

@@ -2,26 +2,16 @@ package model;
 
 import java.time.LocalDate;
 
-/**
- * Student class demonstrating INHERITANCE (extends Person)
- * and POLYMORPHISM (overrides getRole, getDisplayName).
- * Also implements the Manageable interface.
- */
 public class Student extends Person implements Manageable {
 
-    private String studentId;    // e.g. "STU-2024-001"
-    private String grade;        // e.g. "A", "B+", "3.8 GPA"
+    private String studentId;
+    private String grade;
     private String department;
     private LocalDate enrollDate;
     private String address;
 
-    // --- Constructors (overloaded — METHOD OVERLOADING) ---
+    public Student() { super(); }
 
-    public Student() {
-        super();
-    }
-
-    /** Constructor for creating a new student (no DB id yet) */
     public Student(String studentId, String firstName, String lastName,
                    String email, String phone, String grade,
                    String department, LocalDate enrollDate) {
@@ -33,7 +23,6 @@ public class Student extends Person implements Manageable {
         setPhone(phone);
     }
 
-    /** Constructor for loading from DB (has DB id) */
     public Student(int id, String studentId, String firstName, String lastName,
                    String email, String phone, String grade,
                    String department, LocalDate enrollDate) {
@@ -44,28 +33,21 @@ public class Student extends Person implements Manageable {
         this.enrollDate = enrollDate;
     }
 
-    // --- Overriding abstract method from Person ---
-
     @Override
-    public String getRole() {
-        return "Student";
-    }
+    public String getRole() { return "Student"; }
 
-    /** METHOD OVERRIDING: richer display for students */
     @Override
     public String getDisplayName() {
         return "[" + studentId + "] " + getFirstName() + " " + getLastName();
     }
 
-    // --- Manageable interface implementation ---
-
     @Override
     public boolean validate() {
-        return studentId != null && !studentId.isBlank()
-            && getFirstName() != null && !getFirstName().isBlank()
-            && getLastName()  != null && !getLastName().isBlank()
+        return studentId != null && !studentId.trim().isEmpty()
+            && getFirstName() != null && !getFirstName().trim().isEmpty()
+            && getLastName()  != null && !getLastName().trim().isEmpty()
             && getEmail()     != null && getEmail().contains("@")
-            && department     != null && !department.isBlank();
+            && department     != null && !department.trim().isEmpty();
     }
 
     @Override
@@ -75,42 +57,28 @@ public class Student extends Person implements Manageable {
     }
 
     @Override
-    public String getUniqueIdentifier() {
-        return studentId;
-    }
+    public String getUniqueIdentifier() { return studentId; }
 
-    // --- Overloaded helper methods (METHOD OVERLOADING) ---
-
-    /** Format grade as simple string */
     public String getGradeLabel() {
         return grade != null ? grade : "Not assigned";
     }
 
-    /** Format grade with department context */
     public String getGradeLabel(boolean includeContext) {
         if (!includeContext) return getGradeLabel();
         return department + " — " + getGradeLabel();
     }
 
-    // --- Getters and Setters ---
-
     public String getStudentId()              { return studentId; }
     public void setStudentId(String sid)      { this.studentId = sid; }
-
     public String getGrade()                  { return grade; }
-    public void setGrade(String grade)        { this.grade = grade; }
-
+    public void setGrade(String g)            { this.grade = g; }
     public String getDepartment()             { return department; }
-    public void setDepartment(String dept)    { this.department = dept; }
-
+    public void setDepartment(String d)       { this.department = d; }
     public LocalDate getEnrollDate()          { return enrollDate; }
     public void setEnrollDate(LocalDate d)    { this.enrollDate = d; }
-
     public String getAddress()                { return address; }
-    public void setAddress(String address)    { this.address = address; }
+    public void setAddress(String a)          { this.address = a; }
 
     @Override
-    public String toString() {
-        return getSummary();
-    }
+    public String toString() { return getSummary(); }
 }
